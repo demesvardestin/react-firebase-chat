@@ -9,6 +9,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">React Firebase Chat</h1>
+          <h4 className="App-tagline">A chat app built with React and Firebase</h4>
         </header>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
