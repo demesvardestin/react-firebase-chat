@@ -1,0 +1,65 @@
+body {
+  overflow-x: hidden !important;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  text-align: center;
+  width : 100%;
+}
+
+.navbar {
+    padding: .30rem 0 !important;
+}
+
+.navbar-brand {
+    font-size: 18px;
+}
+
+.banner {
+    background-image: linear-gradient(150deg,#53f 15%,#05d5ff 70%,#a6ffcb 94%);
+    background-size: cover;
+    height: 250px;
+    padding-top: 25px;
+}
+
+.banner-row {
+    padding: 50px 0;
+}
+
+.app-tagline {
+    color: #fff;
+}
+
+input, button {
+    height: 50px !important;
+    border-radius: 3px;
+}
+
+input {
+    border-right: none;
+    box-shadow: none !important;
+}
+
+.search-submit {
+    border: 1px solid #ced4da;
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#basic-addon2 {
+    padding: 0;
+    border: none;
+}
+
+.box-shadow {
+    box-shadow: 0 15px 35px rgba(70,50,50,.1), 0 5px 15px rgba(0,0,0,.08);
+}
+
+nav {
+    background-color: transparent;
+}
+
+.buttons-container {
+    margin-top: 20px;
+}

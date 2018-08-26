@@ -1,20 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import Chatroom from './Chatroom/Chatroom'
+
 
 class App extends Component {
+  
+  state = {
+    chatrooms: [ {title: 'Dynamic'}, {title: 'Static'} ]
+  };
+  
+  chatroomInfoHandler = (title1, title2) => {
+    let count = this.state.chatrooms.length;
+    let newChats = title1 && title2 ? [{title: title1}, {title: title2}] : null;
+    console.log(newChats);
+    if (newChats != null) {
+      this.setState(
+        {
+          chatrooms: [newChats[count - 1], newChats[count - 2]]
+        }
+      );
+    } else {
+      this.setState(
+        {
+          chatrooms: [this.state.chatrooms[count - 1], this.state.chatrooms[count - 2]]
+        }
+      );
+    }
+  };
+  
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">React Firebase Chat</h1>
-          <h4 className="App-tagline">A chat app built with React and Firebase</h4>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+        <div className="App row">
+          <Chatroom changeChat={ () => this.chatroomInfoHandler('Comp', 'Licated') } title={this.state.chatrooms[0].title}/>
+          <Chatroom changeChat={ () => this.chatroomInfoHandler('Comp', 'Licated') } title={this.state.chatrooms[0].title}/>
+          <Chatroom changeChat={ () => this.chatroomInfoHandler('Comp', 'Licated') } title={this.state.chatrooms[0].title}/>
+          <Chatroom changeChat={ () => this.chatroomInfoHandler('Comp', 'Licated') } title={this.state.chatrooms[0].title}/>
+        </div>
     );
   }
 }

@@ -1,0 +1,14 @@
+.chat-card {
+    cursor: pointer;
+}
+
+.chat-card-header {
+    padding: 5px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.chat-card-body {
+    padding: 5px 15px;
+    height: 75px;
+}
+
