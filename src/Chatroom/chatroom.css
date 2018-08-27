@@ -12,3 +12,51 @@
     height: 75px;
 }
 
+.chat-modal-content {
+    width : 200%;
+    left: 0;
+    margin-left: -50%;
+    top: 20px;
+    
+}
+
+.chat-modal-body {
+    padding: 0;
+}
+
+.chat-panel {
+    height: 450px;
+    width: 30%;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+}
+
+.chat-body {
+    height: 100% !important;
+    width: 70%;
+}
+
+.chat-modal-footer {
+    height: 60px;
+    border-top: 1px solid #ccc;
+}
+
+.chat-body-messages {
+    height: 390px;
+    padding: 10px;
+}
+
+.dismiss-modal {
+    display: none;
+}
+
+.text-form-input {
+    width : 100%;
+    border: none;
+    box-shadow: none;
+}
+
+.text-form-input:focus {
+    box-shadow: none;
+}
+
