@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Chatroom from './Chatroom/Chatroom'
+import Chatrooms from './Chatrooms/Chatrooms';
+import Banner from './Banner/Banner';
+import Buttons from './BottomButtons/Buttons';
 
 
 class App extends Component {
@@ -38,65 +40,16 @@ class App extends Component {
     let chatrooms = null;
     
     if (this.state.chatroomsPresent) {
-      chatrooms = (
-        <div className="App row">
-          {
-            this.state.chatrooms.map(chatroom => {
-              return <Chatroom title={chatroom.title} key={chatroom.id}/>;
-            })
-          }
-        </div>
-      );
+      chatrooms = [...this.state.chatrooms];
     }
+    
     return (
         <div>
-          <section className="banner">
-            <section class="search-input container">
-              <div className="row banner-row" id="banner-row">
-                  <div className="col-md-6 offset-md-3">
-                    <form id="search-chatrooms">
-                      <h1 className="app-tagline">React Firebase Chat</h1>
-                      <div className="input-group mb-3">
-                        <input className="form-control" type="search" placeholder="Search a chatroom" aria-label="Search" onChange={this.searchChatroom} />
-                        <div className="input-group-append">
-                          <span className="input-group-text" id="basic-addon2">
-                            <button type="submit" className="btn btn-light submit search-submit">
-                              Search
-                            </button>
-                          </span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-              </div>
-            </section>
-          </section>
+          <Banner changed={this.searchChatroom} />
           
-          <div className="container" align="center">
-            {chatrooms}
-          </div>
+          <Chatrooms chatrooms={chatrooms} />
           
-          <section className="buttons-container">
-            <section className="buttons-section container">
-              <div className="row">
-                <div className="col-md-2 offset-md-3">
-                  <button className="btn btn-primary box-shadow btn-block">
-                    Log in
-                  </button>
-                </div>
-                <div className="col-md-2">
-                  <button className="btn btn-danger box-shadow btn-block" onClick={this.toggleClassrooms}>
-                    Toggle Chatrooms
-                  </button>
-                </div>
-                <div className="col-md-2">
-                  <button className="btn btn-info box-shadow btn-block">
-                    Create a chatroom
-                  </button>
-                </div>
-              </div>
-            </section>
-          </section>
+          <Buttons toggleClicked={this.toggleClassrooms} />
         </div>
     );
   }

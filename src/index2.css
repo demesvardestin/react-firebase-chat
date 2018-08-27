@@ -59,12 +59,17 @@ input, button {
 }
 
 input, button, .card, .modal-content {
-    border-radius: 3px !important;
+    border-radius: 3px;
 }
 
 input {
     border-right: none;
     box-shadow: none !important;
+}
+
+.search-chatrooms {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .search-submit {
