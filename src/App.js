@@ -9,7 +9,8 @@ class App extends Component {
   
   state = {
     chatrooms: [ {title: 'Dynamic', id: 'chat-1'}, {title: 'Static', id: 'chat-2'} ],
-    chatroomsPresent: true
+    chatroomsPresent: true,
+    
   };
   
   chatrooms = [...this.state.chatrooms];

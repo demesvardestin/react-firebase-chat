@@ -96,6 +96,55 @@ nav {
     margin-top: 20px;
 }
 
+p {
+    margin-bottom: 5px;
+}
+
+hr {
+    margin-top: 0;
+}
+
+.participant {
+    color: #4095e3 !important;
+}
+
+/* Colors */
+
+.theme-blue {
+    color: #4095e3 !important;
+}
+
+.theme-gray {
+    color: #e5e5e5;
+}
+
+.theme-red {
+    color: #ff3232 !important;
+}
+
+.location-green {
+    color: #5f9616 !important;
+}
+
+.theme-yellow {
+    color: #878706 !important;
+}
+
+.theme-green {
+    color: #05f005 !important;
+}
+
+.theme-darkblue {
+    color: #265988;
+}
+
+.green {
+    color: #05f005 !important;
+}
+
+
+/* Special Effects */
+
 .rotate-90-deg {
     animation: change-to-times infinite 0.25s linear;
 }

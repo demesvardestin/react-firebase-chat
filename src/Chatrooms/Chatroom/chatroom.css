@@ -25,9 +25,12 @@
 }
 
 .chat-panel {
-    height: 450px;
+    height: 460px;
     width: 30%;
     border-right: 1px solid #ccc;
+}
+
+.chat-panel-search-box, .chat-participants {
     padding: 10px;
 }
 
@@ -37,12 +40,12 @@
 }
 
 .chat-modal-footer {
-    height: 60px;
+    height: 56px;
     border-top: 1px solid #ccc;
 }
 
 .chat-body-messages {
-    height: 390px;
+    height: 380px;
     padding: 10px;
 }
 
@@ -58,5 +61,36 @@
 
 .text-form-input:focus {
     box-shadow: none;
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: 10px;
+    background: #4095e3;
+    color: #fff;
+    font-size: 16;
+    text-align: left;
+}
+
+.left-side {
+    display: inline-block;
+    width: 50%;
+    float: left;
+}
+
+.right-side {
+    display: inline-block;
+    width: 50%;
+    float: right;
+}
+
+.someone-is-typing {
+    max-height: 14px;
+    height: 14px;
+    color: #05f005;
+    font-size: 12px;
+    text-align: left;
+    padding-left: 10px;
+    margin: 5px 0;
 }
 
