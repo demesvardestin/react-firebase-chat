@@ -4,7 +4,7 @@ import './chatroom.css';
 class Chatroom extends Component {
     
     state = {
-        messages: [{content: 'Hey how are you?'}, {content: 'I didn\'t see you yesterday'}],
+        messages: [{content: 'Hey how are you?', sender: 'external'}, {content: 'I didn\'t see you yesterday', sender: 'external'}],
         participants: [{name: 'Dem Destin', id: '1'}, {name: 'Cee Milan', id: '2'}],
         someoneIsTyping: false
     };
@@ -22,11 +22,14 @@ class Chatroom extends Component {
         
         if (event.key === 'Enter') {
             // document.querySelector('#' + this.id).
-            messages.push({content: event.target.value});
+            messages.push({content: event.target.value, sender: 'currentUser'});
+            
             this.setState({
                 messages: messages,
                 someoneIsTyping: false
             });
+            
+            event.target.value = '';
         }
     }
     
@@ -76,17 +79,16 @@ class Chatroom extends Component {
                         <div className={"float-right chat-body chat-body" + this.id}>
                             <section className="chat-body-messages">
                                 <section className="incoming-outgoing">
-                                    <div className="left-side">
-                                        {
-                                            !(messages == null) ?
-                                            messages.map(message => {
-                                              return <p className="message" key={message.id}>{message.content}</p>;
-                                            }) : null
-                                        }
-                                    </div>
-                                    <div className="right-side">
-                                        outgoing (your) texts
-                                    </div>
+                                    {
+                                        !(messages == null) ?
+                                        messages.map(message => {
+                                            return (
+                                                <div className={message.sender === 'currentUser' ? 'right-side' : 'left-side'}>
+                                                    <p className="message" key={message.id}>{message.content}</p>
+                                                </div>
+                                            );
+                                        }) : null
+                                    }
                                 </section>
                             </section>
                             <section className="someone-is-typing">

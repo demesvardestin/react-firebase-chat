@@ -7,10 +7,16 @@ import Buttons from './BottomButtons/Buttons';
 
 class App extends Component {
   
+  // componentDidMount () {
+  // }
+  
   state = {
-    chatrooms: [ {title: 'Dynamic', id: 'chat-1'}, {title: 'Static', id: 'chat-2'} ],
+    chatrooms: [
+        this.props.firebase.collection('/chatrooms').map(chatroom => {
+          return {title: chatroom.title, id: chatroom.id, creator: chatroom.creator};
+        })
+      ],
     chatroomsPresent: true,
-    
   };
   
   chatrooms = [...this.state.chatrooms];
