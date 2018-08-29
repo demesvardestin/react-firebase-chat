@@ -3,8 +3,27 @@ import './chatroom.css';
 
 class Chatroom extends Component {
     
+    componentDidMount() {
+        this.resetState();
+    }
+      
+    resetState = (isTyping) => {
+        const messages = [];
+        
+        this.props.firestore.collection('messages')
+        .where('chatroom_id', '==', this.props.id).orderBy('timestamp')
+        .get().then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            messages.push({content: doc.data().content, id: doc.data().id, sender: 'external'});
+          });
+          this.setState({messages: messages, someoneIsTyping: isTyping});
+        })
+        .catch(function(error) {
+            console.log("Error getting documents: ", error);
+        });
+    }
     state = {
-        messages: [{content: 'Hey how are you?', sender: 'external'}, {content: 'I didn\'t see you yesterday', sender: 'external'}],
+        messages: [],
         participants: [{name: 'Dem Destin', id: '1'}, {name: 'Cee Milan', id: '2'}],
         someoneIsTyping: false
     };
@@ -12,7 +31,6 @@ class Chatroom extends Component {
     id = Math.floor(Math.random() * 1234);
     
     participantIsTyping = (event) => {
-        let messages = this.state.messages;
         let check = event.target.value.length > 0 ?
                     true : false;
         this.setState({someoneIsTyping: check});
@@ -21,12 +39,18 @@ class Chatroom extends Component {
         // If participant hits Enter
         
         if (event.key === 'Enter') {
-            // document.querySelector('#' + this.id).
-            messages.push({content: event.target.value, sender: 'currentUser'});
             
-            this.setState({
-                messages: messages,
-                someoneIsTyping: false
+            this.props.firestore.collection('messages').add({
+                content: event.target.value,
+                chatroom_id: this.props.id,
+                sender: 'currentUser',
+                timestamp: new Date()
+            }).then(docRef => {
+                // Add transition effect to open chat following creation
+                // Update DOM
+                
+                this.resetState(false);
+                console.log('Message sent!');
             });
             
             event.target.value = '';
@@ -34,6 +58,12 @@ class Chatroom extends Component {
     }
     
     render() {
+        
+        this.props.firestore.collection("messages")
+        .onSnapshot(querySnapshot => {
+            console.log('test from render');
+            this.resetState(false);
+        });
         
         let messages, participants, someoneIsTyping = null;
     
@@ -50,7 +80,7 @@ class Chatroom extends Component {
         }
         
         return (
-            <div className="col-md-3">
+            <div className="col-md-3 chatroom-col">
                 <div className="modal" id={"chatroom" + this.id} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div className="modal-dialog" role="document">
                     <div className="modal-content chat-modal-content">
@@ -83,7 +113,7 @@ class Chatroom extends Component {
                                         !(messages == null) ?
                                         messages.map(message => {
                                             return (
-                                                <div className={message.sender === 'currentUser' ? 'right-side' : 'left-side'}>
+                                                <div className={message.sender === 'currentUser' ? 'right-side' : 'left-side'} key={message.id}>
                                                     <p className="message" key={message.id}>{message.content}</p>
                                                 </div>
                                             );

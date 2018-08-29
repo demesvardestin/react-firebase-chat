@@ -16,5 +16,6 @@ const config = {
 };
 const app = firebase.initializeApp(config);
 
+
 ReactDOM.render(<App title="This is the search bar" firebase={app.firestore()}/>, document.getElementById('root'));
 registerServiceWorker();
