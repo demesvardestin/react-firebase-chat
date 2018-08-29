@@ -87,7 +87,7 @@ class App extends Component {
         <div>
           <Banner changed={this.searchChatroom} />
           
-          <Chatrooms chatrooms={chatrooms} firestore={this.props.firebase}/>
+          <Chatrooms chatrooms={chatrooms} firestore={this.props.firebase} />
           
           <Buttons toggleClicked={this.toggleClassrooms} createChatroom={this.createChatroom}/>
         </div>

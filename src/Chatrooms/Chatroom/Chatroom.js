@@ -5,6 +5,19 @@ class Chatroom extends Component {
     
     componentDidMount() {
         this.resetState();
+        
+        let newMessages = null;
+        this.props.firestore.collection("messages")
+        .onSnapshot(querySnapshot => {
+            console.log('test from index');
+            newMessages = [...this.state.messages];
+            if (!(this.messages.length === newMessages.length)) {
+                this.resetState(false);
+                this.messages = newMessages;
+                newMessages = null;
+                console.log('new message');
+            }
+        });
     }
       
     resetState = (isTyping) => {
@@ -27,6 +40,8 @@ class Chatroom extends Component {
         participants: [{name: 'Dem Destin', id: '1'}, {name: 'Cee Milan', id: '2'}],
         someoneIsTyping: false
     };
+    
+    messages = [...this.state.messages]
     
     id = Math.floor(Math.random() * 1234);
     
@@ -58,12 +73,6 @@ class Chatroom extends Component {
     }
     
     render() {
-        
-        this.props.firestore.collection("messages")
-        .onSnapshot(querySnapshot => {
-            console.log('test from render');
-            this.resetState(false);
-        });
         
         let messages, participants, someoneIsTyping = null;
     
